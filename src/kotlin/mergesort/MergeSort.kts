@@ -2,17 +2,17 @@ val defaultArray = intArrayOf(10, 5, 8, 3, 1, 7, 6, 4, 2, 0, 9)
 
 fun mergeSort(unsortedArray: IntArray) {
 
-    split(unsortedArray, 0, unsortedArray.size, IntArray(unsortedArray.size))
+    splitAndMerge(unsortedArray, 0, unsortedArray.size, IntArray(unsortedArray.size))
     unsortedArray.forEach { println(it) }
 }
 
-fun split(unsortedArray: IntArray, first: Int, last: Int, sortedArray: IntArray) {
+fun splitAndMerge(unsortedArray: IntArray, first: Int, last: Int, sortedArray: IntArray) {
 
-    if (last - first < 2) return //Array with one position are considered sorted
+    if (last - first < 2) return
 
     val middle = (last + first) / 2
-    split(unsortedArray, first, middle, sortedArray)
-    split(unsortedArray, middle, last, sortedArray)
+    splitAndMerge(unsortedArray, first, middle, sortedArray)
+    splitAndMerge(unsortedArray, middle, last, sortedArray)
     merge(unsortedArray, first, middle, last, sortedArray)
     copyArray(unsortedArray, first, last, sortedArray)
 }
